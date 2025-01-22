@@ -106,5 +106,19 @@ namespace IntegrationService
             FormProdutosDeposito formProdDep = new FormProdutosDeposito();
             formProdDep.Show();      
         }
+
+        private void linxCredentialsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (var form in Application.OpenForms.Cast<Form>().ToList())
+            {
+                if (form != this) // Não fecha o formulário principal
+                {
+                    form.Close();
+                }
+            }
+
+            FormCredentials formCredential = new FormCredentials();
+            formCredential.Show();
+        }
     }
 }

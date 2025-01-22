@@ -33,10 +33,11 @@
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.Menu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.linxProdutosInventarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.linxProdutosDepositoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.linxProdutosSimplificadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.linxMovimentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.linxProdutosDepositoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.linxCredentialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,9 +55,10 @@
             this.linxProdutosDepositoToolStripMenuItem,
             this.linxProdutosSimplificadoToolStripMenuItem,
             this.linxMovimentoToolStripMenuItem,
+            this.linxCredentialsToolStripMenuItem,
             this.sairToolStripMenuItem});
             this.Menu.Name = "Menu";
-            this.Menu.Size = new System.Drawing.Size(217, 136);
+            this.Menu.Size = new System.Drawing.Size(217, 158);
             this.Menu.Text = "Opções";
             // 
             // linxProdutosInventarioToolStripMenuItem
@@ -65,6 +67,13 @@
             this.linxProdutosInventarioToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.linxProdutosInventarioToolStripMenuItem.Text = "Linx Produtos Inventário";
             this.linxProdutosInventarioToolStripMenuItem.Click += new System.EventHandler(this.linxProdutosInventarioToolStripMenuItem_Click);
+            // 
+            // linxProdutosDepositoToolStripMenuItem
+            // 
+            this.linxProdutosDepositoToolStripMenuItem.Name = "linxProdutosDepositoToolStripMenuItem";
+            this.linxProdutosDepositoToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.linxProdutosDepositoToolStripMenuItem.Text = "Linx Produtos Depósito";
+            this.linxProdutosDepositoToolStripMenuItem.Click += new System.EventHandler(this.linxProdutosDepositoToolStripMenuItem_Click);
             // 
             // linxProdutosSimplificadoToolStripMenuItem
             // 
@@ -87,12 +96,12 @@
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click_1);
             // 
-            // linxProdutosDepositoToolStripMenuItem
+            // linxCredentialsToolStripMenuItem
             // 
-            this.linxProdutosDepositoToolStripMenuItem.Name = "linxProdutosDepositoToolStripMenuItem";
-            this.linxProdutosDepositoToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.linxProdutosDepositoToolStripMenuItem.Text = "Linx Produtos Depósito";
-            this.linxProdutosDepositoToolStripMenuItem.Click += new System.EventHandler(this.linxProdutosDepositoToolStripMenuItem_Click);
+            this.linxCredentialsToolStripMenuItem.Name = "linxCredentialsToolStripMenuItem";
+            this.linxCredentialsToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.linxCredentialsToolStripMenuItem.Text = "Credencial";
+            this.linxCredentialsToolStripMenuItem.Click += new System.EventHandler(this.linxCredentialsToolStripMenuItem_Click);
             // 
             // FomMenu
             // 
@@ -117,6 +126,7 @@
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem linxProdutosSimplificadoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem linxProdutosDepositoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem linxCredentialsToolStripMenuItem;
     }
 }
 

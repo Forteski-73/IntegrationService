@@ -112,8 +112,13 @@ namespace IntegrationService
 
         static string ConnectBD(string _result)
         {
+            Credential credentials = Credentials.LoadCredentials();
+            if (credentials == null)
+            {
+                return "As credenciais não foram encontradas.";
+            }
             // Defina a string de conexão
-            string connectionString = "Server=VMSRVSQL01;Database=LINX;User Id=linx;Password=120700@Laura1;";
+            string connectionString = $"Server=VMSRVSQL01;Database=LINX;User Id={credentials.User};Password={credentials.Password};";
             string st = "";
             // Cria uma instância de SqlConnection com a string de conexão.
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -223,14 +228,6 @@ namespace IntegrationService
                                 else if(valor == "True")
                                     valor = "1";
                             }
-
-                            /*if ((campos[cont] == "CodigoModeloNF" && valor == "") ||
-                                (campos[cont] == "CodNaturezaOperacao" && valor.TrimEnd().Length < 5) ||
-                                ((campos[cont] == "CodSefazSituacao") && (valor == "Excluída" || valor == "")))
-                            {
-                                gravar = false;
-                                break;
-                            }*/
 
                             command.Parameters.AddWithValue("@" + campos[cont], valor);
 
