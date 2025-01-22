@@ -164,7 +164,8 @@ namespace IntegrationService
                         "ICMSValorDesoneradoItem, Empresa, DescontoItem, AliqISS, ISSBaseItem, Despesas, SeguroTotalItem,"+
                         "AcrescimoTotalItem, DespesasTotalItem, FormaPix, Totalpix, FormaDepositoDancario, TotalDepositoBancario,"+
                         "IDVendaProdutoB2C, ItemPromocional, AcrescimoItem, ICMSSTAntecipadoAliquota, ICMSSTAntecipadoMargem,"+
-                        "ICMSSTAntecipadoPercReducao, ICMSSTAntecipadoValorItem, ICMSBaseDesoneradoItem, CodigoStatusNFE, PrecoProdutoEpoca)" +
+                        "ICMSSTAntecipadoPercReducao, ICMSSTAntecipadoValorItem, ICMSBaseDesoneradoItem, CodigoStatusNFE, PrecoProdutoEpoca,"+
+                        "Ficha, NumeroSeqPos, DateInsert) "+
                         
                         "VALUES (@Portal, @CNPJEmp, @Transacao, @Usuario, @Documento, @ChaveNF, @ECF, @NumeroSerieECF,"+
                         "@ModeloNF, @DataDocumento, @DataLancamento, @CodigoCliente, @Serie, @DescCFOP, @IDCFOP, @CodVendedor, @Quantidade,"+
@@ -180,7 +181,8 @@ namespace IntegrationService
                         "@ICMSValorDesoneradoItem, @Empresa, @DescontoItem, @AliqISS, @ISSBaseItem, @Despesas, @SeguroTotalItem,"+
                         "@AcrescimoTotalItem, @DespesasTotalItem, @FormaPix, @Totalpix, @FormaDepositoDancario, @TotalDepositoBancario,"+
                         "@IDVendaProdutoB2C, @ItemPromocional, @AcrescimoItem, @ICMSSTAntecipadoAliquota, @ICMSSTAntecipadoMargem," +
-                        "@ICMSSTAntecipadoPercReducao, @ICMSSTAntecipadoValorItem, @ICMSBaseDesoneradoItem, @CodigoStatusNFE, @PrecoProdutoEpoca)";
+                        "@ICMSSTAntecipadoPercReducao, @ICMSSTAntecipadoValorItem, @ICMSBaseDesoneradoItem, @CodigoStatusNFE, @PrecoProdutoEpoca,"+
+                        "@Ficha, @NumeroSeqPos, @DateInsert)";
 
                 string[] campos = { "Portal", "CNPJEmp", "Transacao", "Usuario", "Documento", "ChaveNF", "ECF", "NumeroSerieECF", 
                             "ModeloNF", "DataDocumento", "DataLancamento", "CodigoCliente", "Serie", "DescCFOP", "IDCFOP", "CodVendedor", "Quantidade",
@@ -196,7 +198,8 @@ namespace IntegrationService
                             "ICMSValorDesoneradoItem", "Empresa", "DescontoItem", "AliqISS", "ISSBaseItem", "Despesas", "SeguroTotalItem",
                             "AcrescimoTotalItem", "DespesasTotalItem", "FormaPix", "Totalpix", "FormaDepositoDancario", "TotalDepositoBancario",
                             "IDVendaProdutoB2C", "ItemPromocional", "AcrescimoItem", "ICMSSTAntecipadoAliquota", "ICMSSTAntecipadoMargem",
-                            "ICMSSTAntecipadoPercReducao", "ICMSSTAntecipadoValorItem", "ICMSBaseDesoneradoItem", "CodigoStatusNFE", "PrecoProdutoEpoca" };
+                            "ICMSSTAntecipadoPercReducao", "ICMSSTAntecipadoValorItem", "ICMSBaseDesoneradoItem", "CodigoStatusNFE", "PrecoProdutoEpoca",
+                            "Ficha", "NumeroSeqPos", "DateInsert"};
 
                 // Define a expressão regular para capturar o conteúdo entre as tags <D> e </D>
                 string patternR = @"<R>(.*?)</R>";
@@ -217,15 +220,15 @@ namespace IntegrationService
                     using (SqlCommand command = new SqlCommand(query, _connection))
                     {
                         gravar = true;
-                        string[] valores = new string[111];
+                        string[] valores = new string[114];
                         foreach (Match matchD in matchesD)
                         {
-                            if (cont > 110)
+                            if (cont > 113)
                             {
-                                // Interrompe o loopingo por que se passar de 110 posições é por que o retorno da API
+                                // Interrompe o loopingo por que se passar de 113 posições é por que o retorno da API
                                 // está trazendo campos a mais que precisam ser atualizados nesse escopo
                                 thereNewFields = true;
-                                cont = 110;
+                                cont = 113;
                                 break;
                             }
 
@@ -375,6 +378,9 @@ namespace IntegrationService
                                                             "ICMSBaseDesoneradoItem = @ICMSBaseDesoneradoItem,"+
                                                             "CodigoStatusNFE = @CodigoStatusNFE,"+
                                                             "PrecoProdutoEpoca = @PrecoProdutoEpoca "+
+                                                            "Ficha = @Ficha " +
+                                                            "NumeroSeqPos = @NumeroSeqPos " +
+                                                            "DateInsert = @DateInsert " +
                                         "WHERE ChaveNF = @ChaveNF AND CNPJEmp = @CNPJEmp AND Operacao = @Operacao AND TipoTransacao = @TipoTransacao AND " +
                                         "Transacao = @Transacao AND Identificador = @Identificador AND CodigoCliente = @CodigoCliente AND CodProduto = @CodProduto AND Documento = @Documento";
                                     using (SqlCommand updateCommand = new SqlCommand(queryUpdate, _connection))
@@ -491,6 +497,9 @@ namespace IntegrationService
                                         updateCommand.Parameters.AddWithValue("@ICMSBaseDesoneradoItem",    valores[108]);
                                         updateCommand.Parameters.AddWithValue("@CodigoStatusNFE",       valores[109]);
                                         updateCommand.Parameters.AddWithValue("@PrecoProdutoEpoca",     valores[110]);
+                                        updateCommand.Parameters.AddWithValue("@Ficha",                 valores[111]);
+                                        updateCommand.Parameters.AddWithValue("@NumeroSeqPos",          valores[112]);
+                                        updateCommand.Parameters.AddWithValue("@DateInsert",            valores[113]);
 
                                         updateCommand.Parameters.AddWithValue("@ChaveNF",       valores[5]);
                                         updateCommand.Parameters.AddWithValue("@CNPJEmp",       valores[1]);
