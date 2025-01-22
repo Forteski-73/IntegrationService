@@ -127,6 +127,7 @@ namespace IntegrationService
         {
             string status = "";
             int qtd = 0;
+            Boolean thereNewFields = false;
             try
             {
                 // Query SQL de inserção
@@ -160,6 +161,14 @@ namespace IntegrationService
                         string[] valores = new string[7];
                         foreach (Match matchD in matchesD)
                         {
+                            if (cont > 6)
+                            {
+                                // Interrompe o loopingo por que se passar de 110 posições é por que o retorno da API
+                                // está trazendo campos a mais que precisam ser atualizados nesse escopo
+                                thereNewFields = true;
+                                cont = 6;
+                                break;
+                            }
                             // Obtém o conteúdo entre as tags <D> e </D> e adiciona na lista
                             string valor = matchD.Groups[1].Value;
 
@@ -222,6 +231,10 @@ namespace IntegrationService
                                     //throw new Exception("Erro ao executar o comando SQL: " + query);
                                 }
                             }
+                        }
+                        if (thereNewFields)
+                        {
+                            status = status + "\n\n*Existem campos novos na API que não foram integrados*\n";
                         }
                     }
                 }
